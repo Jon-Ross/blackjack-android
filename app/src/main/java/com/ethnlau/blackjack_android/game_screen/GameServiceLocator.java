@@ -10,6 +10,6 @@ public class GameServiceLocator {
     GameScreenContract.Presenter getPresenter() {
         final Dealer dealer = new Dealer();
         final Game game = new Game(dealer);
-        return new GamePresenter(game);
+        return new GamePresenter(game, new AndroidStringProvider());
     }
 }
