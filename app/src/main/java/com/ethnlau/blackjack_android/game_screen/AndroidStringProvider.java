@@ -6,36 +6,36 @@ public class AndroidStringProvider implements GameScreenContract.StringProvider 
 
     @Override
     public String getGameInstructions() {
-        return null;
+        return "Stick or twist";
     }
 
     @Override
     public String getStartingInstructions() {
-        return null;
+        return "Start a new game";
     }
 
     @Override
     public String getPlayAgainInstructions() {
-        return null;
+        return "Play again";
     }
 
     @Override
     public String getPlayerBustAlert() {
-        return null;
+        return "You've gone bust!";
     }
 
     @Override
     public String getUnderMinThresholdAlert() {
-        return null;
+        return "House is less that 17. House twists";
     }
 
     @Override
     public String getHouseBustAlert() {
-        return null;
+        return "House has gone bust!";
     }
 
     @Override
     public String getHouseAtLeastThresholdAlert() {
-        return null;
+        return "House is at least 17";
     }
 }
