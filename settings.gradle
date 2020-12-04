@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':blackjack-core'
 rootProject.name = "blackjack-android"

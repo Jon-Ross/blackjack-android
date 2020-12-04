@@ -1,6 +1,6 @@
 package com.ethnlau.blackjack_android.game_screen;
 
-import com.ethnlau.blackjack_android.blackjack_core.GameScreenContract;
+import blackjack_core.GameScreenContract;
 
 public class AndroidStringProvider implements GameScreenContract.StringProvider {
 

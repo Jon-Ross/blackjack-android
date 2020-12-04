@@ -1,0 +1,3 @@
+[submodule "blackjack-core"]
+	path = blackjack-core
+	url = https://github.com/Jon-Ross/blackjack-java

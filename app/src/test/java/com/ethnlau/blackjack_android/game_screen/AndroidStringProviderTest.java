@@ -1,10 +1,11 @@
 package com.ethnlau.blackjack_android.game_screen;
 
-import com.ethnlau.blackjack_android.blackjack_core.GameScreenContract;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import blackjack_core.GameScreenContract;
+
+import static org.junit.Assert.assertEquals;
 
 public class AndroidStringProviderTest {
 

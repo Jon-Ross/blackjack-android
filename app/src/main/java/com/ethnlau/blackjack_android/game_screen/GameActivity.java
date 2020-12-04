@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ethnlau.blackjack_android.R;
-import com.ethnlau.blackjack_android.blackjack_core.GamePresenter;
-import com.ethnlau.blackjack_android.blackjack_core.GameScreenContract;
-import com.ethnlau.blackjack_android.blackjack_core.Hand;
-import com.ethnlau.blackjack_android.blackjack_core.Winner;
+
+import blackjack_core.GameScreenContract;
+import blackjack_core.Hand;
+import blackjack_core.Winner;
 
 public class GameActivity extends AppCompatActivity implements GameScreenContract.View {
 
