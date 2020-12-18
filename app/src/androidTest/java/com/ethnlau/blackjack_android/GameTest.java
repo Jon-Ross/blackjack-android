@@ -33,6 +33,6 @@ public class GameTest {
     public void useAppContext() {
         mActivityTestRule.launchActivity(new Intent());
 
-        onView(withText("Press \"n\" to start a new blackjack game")).check(matches(isDisplayed()));
+        onView(withText("Start a new game")).check(matches(isDisplayed()));
     }
 }
