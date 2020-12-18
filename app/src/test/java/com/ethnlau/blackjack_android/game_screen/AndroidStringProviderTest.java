@@ -18,7 +18,7 @@ public class AndroidStringProviderTest {
 
     @Test
     public void testGetStartingInstructionsStringValues() {
-        assertEquals("Start a new game", stringProvider.getStartingInstructions());
+        assertEquals("Tap on \"PLAY GAME\" to start a new game", stringProvider.getStartingInstructions());
     }
 
     @Test

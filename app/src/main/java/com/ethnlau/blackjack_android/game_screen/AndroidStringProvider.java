@@ -11,7 +11,7 @@ public class AndroidStringProvider implements GameScreenContract.StringProvider 
 
     @Override
     public String getStartingInstructions() {
-        return "Start a new game";
+        return "Tap on \"PLAY GAME\" to start a new game";
     }
 
     @Override

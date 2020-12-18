@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ethnlau.blackjack_android.R;
 
@@ -18,6 +20,15 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 
     private GameScreenContract.Presenter presenter;
 
+    private TextView instructionsView;
+    private TextView movesHistoryView;
+    private TextView playerHandView;
+    private TextView houseHandView;
+
+    private Button playButton;
+    private Button stickButton;
+    private Button twistButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +36,44 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 
         presenter = new GameServiceLocator().getPresenter();
         presenter.bind(this);
+
+        setUpTextViews();
+        setUpButtons();
+
         presenter.onStartScreen();
+    }
+
+    private void setUpTextViews() {
+        instructionsView = findViewById(R.id.instructions);
+        movesHistoryView = findViewById(R.id.movesHistory);
+        playerHandView = findViewById(R.id.playerHand);
+        houseHandView = findViewById(R.id.houseHand);
+    }
+
+    private void setUpButtons() {
+        playButton = findViewById(R.id.playButton);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.onStartBlackJackGame();
+            }
+        });
+
+        stickButton = findViewById(R.id.stickButton);
+        stickButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.onStick();
+            }
+        });
+
+        twistButton = findViewById(R.id.twistButton);
+        twistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.onTwist();
+            }
+        });
     }
 
     @Override
@@ -36,32 +84,46 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 
     @Override
     public void showStartingInstructions(String instructions) {
-        final TextView instructionsView = findViewById(R.id.instructions);
         instructionsView.setText(instructions);
-    }
-
-    @Override
-    public void showPlayerHand(Hand hand) {
-
+//        movesHistoryView.setText("");
+        playButton.setVisibility(View.VISIBLE);
+        stickButton.setVisibility(View.GONE);
+        twistButton.setVisibility(View.GONE);
     }
 
     @Override
     public void showGameInstructions(String instructions) {
+        instructionsView.setText(instructions);
+//        final String currentMoves = movesHistoryView.getText().toString();
+//        movesHistoryView.setText(currentMoves + "\n" + instructions);
+        playButton.setVisibility(View.GONE);
+        stickButton.setVisibility(View.VISIBLE);
+        twistButton.setVisibility(View.VISIBLE);
+    }
 
+    @Override
+    public void showPlayerHand(Hand hand) {
+        playerHandView.setText(hand.toString());
     }
 
     @Override
     public void showHouseHand(Hand hand) {
-
+        houseHandView.setText(hand.toString());
     }
 
     @Override
     public void showWinner(Winner winner) {
-
+        Toast.makeText(this, winner.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showAlert(String alert) {
-
+        Toast.makeText(this, alert, Toast.LENGTH_SHORT).show();
     }
 }
+
+// TODO:
+// * display nice hand format
+// * have AndroidStringProvider get copy from strings.xml file
+// * write UI test
+// * implement moves history

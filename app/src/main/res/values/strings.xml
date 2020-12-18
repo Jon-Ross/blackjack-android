@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">blackjack-android</string>
+    <string name="app_name">Blackjack</string>
+    <string name="starting_instructions">Tap on "PLAY GAME" to start a new game</string>
 </resources>
