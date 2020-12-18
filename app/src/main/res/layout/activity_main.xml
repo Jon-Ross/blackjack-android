@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,12 +12,93 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        tools:text="Press n to start a new blackjack game"
         android:textSize="28sp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Press n to start a new blackjack game"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/movesHistory"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:padding="8dp"
+        android:textSize="28sp"
+        android:gravity="center"
+        tools:text="House twists"
+        app:layout_constraintTop_toBottomOf="@+id/instructions"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/playerHand"
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:elevation="8dp"
+        tools:text="[0,1,4,6,7] - 21"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toStartOf="@+id/houseHand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movesHistory" />
+
+    <TextView
+        android:id="@+id/houseHand"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textSize="28sp"
+        android:elevation="8dp"
+        tools:text="[0,1,4,6,7] - 21"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toBottomOf="@+id/playerHand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playerHand"
+        app:layout_constraintTop_toBottomOf="@+id/movesHistory" />
+
+    <TextView
+        android:id="@+id/winner"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:padding="8dp"
+        android:textSize="28sp"
+        android:gravity="center"
+        tools:text="You win"
+        app:layout_constraintTop_toBottomOf="@+id/playerHand"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/stickButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        android:text="Stick"
+        app:layout_constraintBottom_toTopOf="@+id/twistButton"
+        app:layout_constraintEnd_toEndOf="@+id/twistButton"
+        app:layout_constraintStart_toStartOf="@+id/twistButton" />
+
+    <Button
+        android:id="@+id/twistButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        android:text="Twist"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:text="Play game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
