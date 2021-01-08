@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        presenter = new GameServiceLocator().getPresenter();
+        presenter = new GameServiceLocator().getPresenter(this);
         presenter.bind(this);
 
         setUpTextViews();
@@ -123,7 +123,6 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 }
 
 // TODO:
-// * display nice hand format
-// * have AndroidStringProvider get copy from strings.xml file
+// * commit with core change
 // * write UI test
 // * implement moves history

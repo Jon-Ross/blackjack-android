@@ -1,48 +1,81 @@
 package com.ethnlau.blackjack_android.game_screen;
 
 
+import android.content.Context;
+
+import com.ethnlau.blackjack_android.R;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import blackjack_core.GameScreenContract;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class AndroidStringProviderTest {
 
-    private final GameScreenContract.StringProvider stringProvider = new AndroidStringProvider();
+    private static final String GAME_INSTRUCTIONS = "Stick and twist";
+    private static final String STARTING_INSTRUCTIONS = "Start a new blackjack game";
+    private static final String PLAY_AGAIN_INSTRUCTIONS = "Play a new blackjack game";
+    private static final String HOUSE_VALUE_IS_AT_LEAST_THRESHOLD = "House value is at least threshold";
+    private static final String HOUSE_UNDER_MIN_THRESHOLD_ALERT = "House value is less than 17. House Twists.";
+    private static final String PLAYER_BUST_ALERT = "You're bust!";
+    private static final String HOUSE_BUST_ALERT = "House bust!";
+
+    @Mock
+    private Context context;
+
+    private GameScreenContract.StringProvider stringProvider;
+
+    @Before
+    public void setUp() throws Exception {
+        initMocks(this);
+        stringProvider = new AndroidStringProvider(context);
+
+        when(context.getString(R.string.starting_instructions)).thenReturn(STARTING_INSTRUCTIONS);
+        when(context.getString(R.string.game_instructions)).thenReturn(GAME_INSTRUCTIONS);
+        when(context.getString(R.string.play_again_instructions)).thenReturn(PLAY_AGAIN_INSTRUCTIONS);
+        when(context.getString(R.string.player_bust_alert)).thenReturn(PLAYER_BUST_ALERT);
+        when(context.getString(R.string.house_bust_alert)).thenReturn(HOUSE_BUST_ALERT);
+        when(context.getString(R.string.house_under_min_threshold_alert)).thenReturn(HOUSE_UNDER_MIN_THRESHOLD_ALERT);
+        when(context.getString(R.string.house_at_least_min_threshold_alert)).thenReturn(HOUSE_VALUE_IS_AT_LEAST_THRESHOLD);
+    }
 
     @Test
     public void testGetGameInstructionsStringValues() {
-        assertEquals("Stick or twist", stringProvider.getGameInstructions());
+        assertEquals(GAME_INSTRUCTIONS, stringProvider.getGameInstructions());
     }
 
     @Test
     public void testGetStartingInstructionsStringValues() {
-        assertEquals("Tap on \"PLAY GAME\" to start a new game", stringProvider.getStartingInstructions());
+        assertEquals(STARTING_INSTRUCTIONS, stringProvider.getStartingInstructions());
     }
 
     @Test
     public void testGetPlayAgainInstructionsStringValues() {
-        assertEquals("Play again", stringProvider.getPlayAgainInstructions());
+        assertEquals(PLAY_AGAIN_INSTRUCTIONS, stringProvider.getPlayAgainInstructions());
     }
 
     @Test
     public void testGetPlayerBustAlertStringValues() {
-        assertEquals("You've gone bust!", stringProvider.getPlayerBustAlert());
+        assertEquals(PLAYER_BUST_ALERT, stringProvider.getPlayerBustAlert());
     }
 
     @Test
     public void testGetUnderMinThresholdAlertStringValues() {
-        assertEquals("House is less that 17. House twists", stringProvider.getUnderMinThresholdAlert());
+        assertEquals(HOUSE_UNDER_MIN_THRESHOLD_ALERT, stringProvider.getUnderMinThresholdAlert());
     }
 
     @Test
     public void testGetHouseBustAlertStringValues() {
-        assertEquals("House has gone bust!", stringProvider.getHouseBustAlert());
+        assertEquals(HOUSE_BUST_ALERT, stringProvider.getHouseBustAlert());
     }
 
     @Test
     public void testGetHouseAtLeastThresholdAlertStringValues() {
-        assertEquals("House is at least 17", stringProvider.getHouseAtLeastThresholdAlert());
+        assertEquals(HOUSE_VALUE_IS_AT_LEAST_THRESHOLD, stringProvider.getHouseAtLeastThresholdAlert());
     }
 }
