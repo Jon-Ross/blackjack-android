@@ -8,7 +8,7 @@ import blackjack_core.GameScreenContract;
 
 public class AndroidStringProvider implements GameScreenContract.StringProvider {
 
-    private Context context;
+    private final Context context;
 
     public AndroidStringProvider(final Context context) {
         this.context = context;
