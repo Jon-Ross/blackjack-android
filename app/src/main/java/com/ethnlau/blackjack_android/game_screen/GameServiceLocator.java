@@ -10,8 +10,8 @@ import blackjack_core.GameScreenContract;
 public class GameServiceLocator {
 
     GameScreenContract.Presenter getPresenter(final Context context) {
-        final Dealer dealer = new Dealer();
-        final Game game = new Game(dealer);
+        final DealerProvider dealerProvider = DealerProvider.getInstance();
+        final Game game = new Game(dealerProvider.getDealer());
         return new GamePresenter(game, new AndroidStringProvider(context));
     }
 }

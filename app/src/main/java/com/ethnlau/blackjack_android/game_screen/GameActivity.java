@@ -123,6 +123,6 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 }
 
 // TODO:
-// * commit with core change
 // * write UI test
+// * implement singleton dealer provider and use
 // * implement moves history
