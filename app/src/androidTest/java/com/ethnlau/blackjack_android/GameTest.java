@@ -27,7 +27,7 @@ public class GameTest {
     public final ActivityTestRule<GameActivity> mActivityTestRule = new ActivityTestRule<>(GameActivity.class, true, false);
 
     @Test
-    public void useAppContext() {
+    public void GivenPlayerHandBetterThanHouse_WhenRunGame_ThenPlayerWinsAndCanPlayAgain() {
         final DealerProvider dealerProvider = DealerProvider.getInstance();
         AndroidDealerMock dealer = new AndroidDealerMock();
         dealer.addValue(10);
@@ -80,6 +80,7 @@ public class GameTest {
         onView(withId(R.id.houseHand))
                 .check(matches(withText("[5, 7, 5]")));
         // check player wins
+        onView(withId(R.id.winner)).check(matches(isDisplayed()));
         onView(withId(R.id.winner)).check(matches(withText("Player wins!")));
         onView(withId(R.id.instructions))
                 .check(matches(withText("Tap on \"PLAY GAME\" to start a new game")));

@@ -24,6 +24,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
     private TextView movesHistoryView;
     private TextView playerHandView;
     private TextView houseHandView;
+    private TextView winnerView;
 
     private Button playButton;
     private Button stickButton;
@@ -48,6 +49,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         movesHistoryView = findViewById(R.id.movesHistory);
         playerHandView = findViewById(R.id.playerHand);
         houseHandView = findViewById(R.id.houseHand);
+        winnerView = findViewById(R.id.winner);
     }
 
     private void setUpButtons() {
@@ -104,6 +106,9 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
     @Override
     public void showPlayerHand(Hand hand) {
         playerHandView.setText(hand.toString());
+        winnerView.setVisibility(View.GONE);
+        winnerView.setText("");
+        houseHandView.setText("");
     }
 
     @Override
@@ -113,7 +118,16 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 
     @Override
     public void showWinner(Winner winner) {
-        Toast.makeText(this, winner.toString(), Toast.LENGTH_SHORT).show();
+        if (winner == Winner.PLAYER) {
+            winnerView.setText(R.string.player_wins);
+        } else {
+            winnerView.setText(R.string.house_wins);
+        }
+        winnerView.setVisibility(View.VISIBLE);
+        instructionsView.setText(R.string.starting_instructions);
+        playButton.setVisibility(View.GONE);
+        stickButton.setVisibility(View.VISIBLE);
+        twistButton.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -126,3 +140,4 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 // * get UI test passing
 // * update UI test with testing moves history
 // * implement moves history
+// * add house wins with player bust UI test

@@ -25,11 +25,6 @@ public class AndroidStringProvider implements GameScreenContract.StringProvider 
     }
 
     @Override
-    public String getPlayAgainInstructions() {
-        return context.getString(R.string.play_again_instructions);
-    }
-
-    @Override
     public String getPlayerBustAlert() {
         return context.getString(R.string.player_bust_alert);
     }
