@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Blackjack</string>
-    <string name="starting_instructions">Tap on "PLAY GAME" to start a new game</string>
+    <string name="starting_instructions">Tap on \"PLAY GAME\" to start a new game</string>
     <string name="game_instructions">Stick or twist</string>
     <string name="play_again_instructions">Play again</string>
     <string name="player_bust_alert">You\'ve gone bust!</string>

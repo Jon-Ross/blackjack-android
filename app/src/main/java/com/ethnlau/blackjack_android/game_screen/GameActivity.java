@@ -123,6 +123,6 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 }
 
 // TODO:
-// * write UI test
-// * implement singleton dealer provider and use
+// * get UI test passing
+// * update UI test with testing moves history
 // * implement moves history
