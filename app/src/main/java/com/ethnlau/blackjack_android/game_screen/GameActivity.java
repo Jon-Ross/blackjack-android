@@ -137,7 +137,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 }
 
 // TODO:
-// * get UI test passing
+// * clean up and refactor - next move to separate class
 // * update UI test with testing moves history
 // * implement moves history
 // * add house wins with player bust UI test
