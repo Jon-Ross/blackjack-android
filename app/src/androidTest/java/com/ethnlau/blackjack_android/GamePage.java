@@ -1,5 +1,7 @@
 package com.ethnlau.blackjack_android;
 
+import android.app.Activity;
+
 import androidx.annotation.IdRes;
 
 import com.ethnlau.blackjack_android.game_screen.DealerProvider;
@@ -9,9 +11,11 @@ import java.util.Arrays;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 public class GamePage {
@@ -46,8 +50,16 @@ public class GamePage {
     }
 
     void checkPlayerWins() {
+        checkWinner("Player");
+    }
+
+    public void checkHouseWins() {
+        checkWinner("House");
+    }
+
+    private void checkWinner(final String winner) {
         onView(withId(R.id.winner)).check(matches(isDisplayed()));
-        onView(withId(R.id.winner)).check(matches(withText("Player wins!")));
+        onView(withId(R.id.winner)).check(matches(withText(winner + " wins!")));
         onView(withId(R.id.instructions))
                 .check(matches(withText("Tap on \"PLAY GAME\" to start a new game")));
         onView(withId(R.id.stickButton))
@@ -90,6 +102,18 @@ public class GamePage {
                 .check(matches(withText("")));
     }
 
+    void tapPlayButton() {
+        tapViewWithText("PLAY GAME");
+    }
+
+    private void tapViewWithText(final String text) {
+        onView(withText(text)).perform(click());
+    }
+
+    public void checkPlayerBustAlert(final Activity activity) {
+        onView(withText("You've gone bust!")).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
+    }
+
     private void tapViewWithId(@IdRes final int id) {
         onView(withId(id)).perform(click());
     }
@@ -100,13 +124,5 @@ public class GamePage {
         } else {
             return "";
         }
-    }
-
-    void tapPlayButton() {
-        tapViewWithText("PLAY GAME");
-    }
-
-    private void tapViewWithText(final String text) {
-        onView(withText(text)).perform(click());
     }
 }

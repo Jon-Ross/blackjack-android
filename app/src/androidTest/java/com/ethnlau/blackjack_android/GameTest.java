@@ -56,4 +56,23 @@ public class GameTest {
         page.checkPlayerHand(5, 10);
         page.checkRefreshGameState();
     }
+
+    @Test
+    public void GivenPlayerGoesBust_WhenRunGame_ThenHouseWinsAndCanPlayAgain() {
+        page.setUpDealerMock(10, 5, 7, 1, 2);
+
+        mActivityTestRule.launchActivity(new Intent());
+
+        page.checkStartingGameState();
+        page.tapPlayButton();
+        page.checkPlayerHand(10, 5);
+        page.checkHouseHand();
+        page.tapTwistButton();
+        page.checkPlayerHand(10, 5, 7);
+        page.checkPlayerBustAlert(mActivityTestRule.getActivity());
+        page.checkHouseWins();
+        page.tapPlayButton();
+        page.checkPlayerHand(1, 2);
+        page.checkRefreshGameState();
+    }
 }
