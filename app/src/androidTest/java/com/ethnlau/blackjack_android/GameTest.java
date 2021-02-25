@@ -94,4 +94,27 @@ public class GameTest {
         page.checkPlayerHand(1, 2);
         page.checkRefreshGameState();
     }
+
+    @Test
+    public void GivenHouseHandBetterThanPlayer_WhenRunGame_ThenHouseWinsAndCanPlayAgain() {
+        page.setUpDealerMock(5, 5, 7, 10, 2, 3);
+
+        mActivityTestRule.launchActivity(new Intent());
+
+        page.checkStartingGameState();
+        page.tapPlayButton();
+        page.checkPlayerHand(5, 5);
+        page.checkHouseHand();
+        page.tapStickButton();
+        page.checkHouseHand(7, 10);
+        page.checkHouseWins();
+        page.checkMovesHistory(
+                "\n" + PLAYER_STICKS + "\n" +
+                        HOUSE_IS_AT_LEAST_17 + "\n" +
+                        HOUSE_STICKS
+        );
+        page.tapPlayButton();
+        page.checkPlayerHand(2, 3);
+        page.checkRefreshGameState();
+    }
 }

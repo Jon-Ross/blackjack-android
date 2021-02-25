@@ -140,6 +140,3 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         movesHistoryView.setText(currentMoves + "\n" + move);
     }
 }
-
-// TODO:
-// * add house wins with player bust UI test
