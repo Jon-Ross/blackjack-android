@@ -34,6 +34,7 @@ public class GameTest {
     private static final String HOUSE_IS_AT_LEAST_17 = "House is at least 17.";
     private static final String HOUSE_STICKS = "House sticks";
     private static final String YOU_VE_GONE_BUST = "You've gone bust!";
+    private static final String HOUSE_GONE_BUST = "House has gone bust!";
 
     @Rule
     public final ActivityTestRule<GameActivity> mActivityTestRule = new ActivityTestRule<>(GameActivity.class, true, false);
@@ -112,6 +113,30 @@ public class GameTest {
                 "\n" + PLAYER_STICKS + "\n" +
                         HOUSE_IS_AT_LEAST_17 + "\n" +
                         HOUSE_STICKS
+        );
+        page.tapPlayButton();
+        page.checkPlayerHand(2, 3);
+        page.checkRefreshGameState();
+    }
+
+    @Test
+    public void GivenPlayerSticksAndHouseHandGoesBust_WhenRunGame_ThenPlayerWinsAndCanPlayAgain() {
+        page.setUpDealerMock(5, 5, 6, 10, 10, 2, 3);
+
+        mActivityTestRule.launchActivity(new Intent());
+
+        page.checkStartingGameState();
+        page.tapPlayButton();
+        page.checkPlayerHand(5, 5);
+        page.checkHouseHand();
+        page.tapStickButton();
+        page.checkHouseHand(6, 10, 10);
+        page.checkPlayerWins();
+        page.checkMovesHistory(
+                "\n" + PLAYER_STICKS + "\n" +
+                        HOUSE_IS_LESS_THAN_17 + "\n" +
+                        HOUSE_TWISTS + "\n" +
+                        HOUSE_GONE_BUST
         );
         page.tapPlayButton();
         page.checkPlayerHand(2, 3);
