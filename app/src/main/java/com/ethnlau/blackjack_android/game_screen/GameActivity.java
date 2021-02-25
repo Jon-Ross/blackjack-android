@@ -57,6 +57,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                movesHistoryView.setText("");
                 presenter.onStartBlackJackGame();
             }
         });
@@ -65,6 +66,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         stickButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateMovesHistory("Player sticks");
                 presenter.onStick();
             }
         });
@@ -73,6 +75,7 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         twistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                updateMovesHistory("Player twists");
                 presenter.onTwist();
             }
         });
@@ -87,7 +90,6 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
     @Override
     public void showStartingInstructions(String instructions) {
         instructionsView.setText(instructions);
-//        movesHistoryView.setText("");
         playButton.setVisibility(View.VISIBLE);
         stickButton.setVisibility(View.GONE);
         twistButton.setVisibility(View.GONE);
@@ -96,8 +98,6 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
     @Override
     public void showGameInstructions(String instructions) {
         instructionsView.setText(instructions);
-//        final String currentMoves = movesHistoryView.getText().toString();
-//        movesHistoryView.setText(currentMoves + "\n" + instructions);
         playButton.setVisibility(View.GONE);
         stickButton.setVisibility(View.VISIBLE);
         twistButton.setVisibility(View.VISIBLE);
@@ -132,12 +132,14 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 
     @Override
     public void showAlert(String alert) {
-        Toast.makeText(this, alert, Toast.LENGTH_SHORT).show();
+        updateMovesHistory(alert);
+    }
+
+    private void updateMovesHistory(String move) {
+        final String currentMoves = movesHistoryView.getText().toString();
+        movesHistoryView.setText(currentMoves + "\n" + move);
     }
 }
 
 // TODO:
-// * clean up and refactor - next move to separate class
-// * update UI test with testing moves history
-// * implement moves history
 // * add house wins with player bust UI test

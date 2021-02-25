@@ -27,6 +27,14 @@ import static org.hamcrest.Matchers.not;
 @RunWith(AndroidJUnit4.class)
 public class GameTest {
 
+    private static final String PLAYER_TWISTS = "Player twists";
+    private static final String PLAYER_STICKS = "Player sticks";
+    private static final String HOUSE_IS_LESS_THAN_17 = "House is less than 17.";
+    private static final String HOUSE_TWISTS = "House twists";
+    private static final String HOUSE_IS_AT_LEAST_17 = "House is at least 17.";
+    private static final String HOUSE_STICKS = "House sticks";
+    private static final String YOU_VE_GONE_BUST = "You've gone bust!";
+
     @Rule
     public final ActivityTestRule<GameActivity> mActivityTestRule = new ActivityTestRule<>(GameActivity.class, true, false);
 
@@ -52,6 +60,14 @@ public class GameTest {
         page.tapStickButton();
         page.checkHouseHand(5, 7, 5);
         page.checkPlayerWins();
+        page.checkMovesHistory(
+                "\n" + PLAYER_TWISTS + "\n" +
+                        PLAYER_STICKS + "\n" +
+                        HOUSE_IS_LESS_THAN_17 + "\n" +
+                        HOUSE_TWISTS + "\n" +
+                        HOUSE_IS_AT_LEAST_17 + "\n" +
+                        HOUSE_STICKS
+        );
         page.tapPlayButton();
         page.checkPlayerHand(5, 10);
         page.checkRefreshGameState();
@@ -69,8 +85,11 @@ public class GameTest {
         page.checkHouseHand();
         page.tapTwistButton();
         page.checkPlayerHand(10, 5, 7);
-        page.checkPlayerBustAlert(mActivityTestRule.getActivity());
         page.checkHouseWins();
+        page.checkMovesHistory(
+                "\n" + PLAYER_TWISTS + "\n" +
+                        YOU_VE_GONE_BUST
+        );
         page.tapPlayButton();
         page.checkPlayerHand(1, 2);
         page.checkRefreshGameState();

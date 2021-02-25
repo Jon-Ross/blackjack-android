@@ -4,8 +4,8 @@
     <string name="game_instructions">Stick or twist</string>
     <string name="player_bust_alert">You\'ve gone bust!</string>
     <string name="house_bust_alert">House has gone bust!</string>
-    <string name="house_under_min_threshold_alert">House is less that 17. House twists</string>
-    <string name="house_at_least_min_threshold_alert">House is at least 17</string>
+    <string name="house_under_min_threshold_alert">House is less than 17.\nHouse twists</string>
+    <string name="house_at_least_min_threshold_alert">House is at least 17.\nHouse sticks</string>
     <string name="player_wins">Player wins!</string>
     <string name="house_wins">House wins!</string>
 </resources>

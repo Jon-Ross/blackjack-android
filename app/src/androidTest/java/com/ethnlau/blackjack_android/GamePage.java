@@ -1,7 +1,5 @@
 package com.ethnlau.blackjack_android;
 
-import android.app.Activity;
-
 import androidx.annotation.IdRes;
 
 import com.ethnlau.blackjack_android.game_screen.DealerProvider;
@@ -11,11 +9,9 @@ import java.util.Arrays;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 public class GamePage {
@@ -90,6 +86,11 @@ public class GamePage {
         onView(withId(R.id.playerHand)).check(matches(withText(hand)));
     }
 
+    void checkMovesHistory(String movesHistory) {
+        onView(withId(R.id.movesHistory))
+                .check(matches(withText(movesHistory)));
+    }
+
     void tapTwistButton() {
         tapViewWithId(R.id.twistButton);
     }
@@ -108,10 +109,6 @@ public class GamePage {
 
     private void tapViewWithText(final String text) {
         onView(withText(text)).perform(click());
-    }
-
-    public void checkPlayerBustAlert(final Activity activity) {
-        onView(withText("You've gone bust!")).inRoot(withDecorView(not(is(activity.getWindow().getDecorView())))).check(matches(isDisplayed()));
     }
 
     private void tapViewWithId(@IdRes final int id) {
