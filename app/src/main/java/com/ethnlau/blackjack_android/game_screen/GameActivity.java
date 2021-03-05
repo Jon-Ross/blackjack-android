@@ -137,6 +137,6 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 
     private void updateMovesHistory(String move) {
         final String currentMoves = movesHistoryView.getText().toString();
-        movesHistoryView.setText(currentMoves + "\n" + move);
+        movesHistoryView.setText((currentMoves + "\n" + move).trim());
     }
 }

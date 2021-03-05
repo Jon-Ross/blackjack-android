@@ -62,7 +62,7 @@ public class GameTest {
         page.checkHouseHand(5, 7, 5);
         page.checkPlayerWins();
         page.checkMovesHistory(
-                "\n" + PLAYER_TWISTS + "\n" +
+                PLAYER_TWISTS + "\n" +
                         PLAYER_STICKS + "\n" +
                         HOUSE_IS_LESS_THAN_17 + "\n" +
                         HOUSE_TWISTS + "\n" +
@@ -88,7 +88,7 @@ public class GameTest {
         page.checkPlayerHand(10, 5, 7);
         page.checkHouseWins();
         page.checkMovesHistory(
-                "\n" + PLAYER_TWISTS + "\n" +
+                PLAYER_TWISTS + "\n" +
                         YOU_VE_GONE_BUST
         );
         page.tapPlayButton();
@@ -110,7 +110,7 @@ public class GameTest {
         page.checkHouseHand(7, 10);
         page.checkHouseWins();
         page.checkMovesHistory(
-                "\n" + PLAYER_STICKS + "\n" +
+                PLAYER_STICKS + "\n" +
                         HOUSE_IS_AT_LEAST_17 + "\n" +
                         HOUSE_STICKS
         );
@@ -133,7 +133,7 @@ public class GameTest {
         page.checkHouseHand(6, 10, 10);
         page.checkPlayerWins();
         page.checkMovesHistory(
-                "\n" + PLAYER_STICKS + "\n" +
+                PLAYER_STICKS + "\n" +
                         HOUSE_IS_LESS_THAN_17 + "\n" +
                         HOUSE_TWISTS + "\n" +
                         HOUSE_GONE_BUST
