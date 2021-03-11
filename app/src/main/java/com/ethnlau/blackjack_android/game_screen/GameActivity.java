@@ -62,30 +62,21 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
 
     private void setUpButtons() {
         playButton = findViewById(R.id.playButton);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                movesHistoryView.setText("");
-                presenter.onStartBlackJackGame();
-            }
+        playButton.setOnClickListener(v -> {
+            movesHistoryView.setText("");
+            presenter.onStartBlackJackGame();
         });
 
         stickButton = findViewById(R.id.stickButton);
-        stickButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateMovesHistory("Player sticks");
-                presenter.onStick();
-            }
+        stickButton.setOnClickListener(v -> {
+            updateMovesHistory("Player sticks");
+            presenter.onStick();
         });
 
         twistButton = findViewById(R.id.twistButton);
-        twistButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateMovesHistory("Player twists");
-                presenter.onTwist();
-            }
+        twistButton.setOnClickListener(v -> {
+            updateMovesHistory("Player twists");
+            presenter.onTwist();
         });
     }
 
@@ -147,11 +138,6 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         final String currentMoves = movesHistoryView.getText().toString();
         movesHistoryView.setText((currentMoves + "\n" + move).trim());
 
-        scrollview.post(new Runnable() {
-            @Override
-            public void run() {
-                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
-            }
-        });
+        scrollview.post(() -> scrollview.fullScroll(ScrollView.FOCUS_DOWN));
     }
 }
