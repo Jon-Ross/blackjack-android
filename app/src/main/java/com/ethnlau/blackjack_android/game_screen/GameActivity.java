@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
     private Button stickButton;
     private Button twistButton;
 
+    private ScrollView scrollview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +41,15 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
         presenter = new GameServiceLocator().getPresenter(this);
         presenter.bind(this);
 
-        setUpTextViews();
-        setUpButtons();
+        setUpViews();
 
         presenter.onStartScreen();
+    }
+
+    private void setUpViews() {
+        setUpTextViews();
+        setUpButtons();
+        scrollview = findViewById(R.id.movesHistoryScroll);
     }
 
     private void setUpTextViews() {
@@ -138,5 +146,12 @@ public class GameActivity extends AppCompatActivity implements GameScreenContrac
     private void updateMovesHistory(String move) {
         final String currentMoves = movesHistoryView.getText().toString();
         movesHistoryView.setText((currentMoves + "\n" + move).trim());
+
+        scrollview.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 }
